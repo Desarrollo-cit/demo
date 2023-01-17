@@ -243,34 +243,34 @@ alert(dato);
         console.log(data);
 
         
-    //     topicosTabla.destroy();
-    //     let contador = 1;
-    //     topicosTabla = new Datatable('#topicosTabla', {
-    //         language : lenguaje,
-    //         data : data,
-    //         columns : [
-    //             { 
-    //                 data : 'id',
-    //                 render : () => {      
-    //                     return contador++;
-    //                 }
-    //             },
-    //             { data : 'primer_desc'},
+        topicosTabla.destroy();
+        let contador = 1;
+        topicosTabla = new Datatable('#topicosTabla', {
+            language : lenguaje,
+            data : data,
+            columns : [
+                { 
+                    data : 'id',
+                    render : () => {      
+                        return contador++;
+                    }
+                },
+                { data : 'primer_desc'},
               
-    //             { 
-    //                 data : 'primer_cantidad',
-    //                 'render': (data, type, row, meta) => {
-    //                     return `<button class="btn btn-warning" onclick="asignarValores('${row.id}', '${row.nombre}', '${row.precio}')">Modificar</button>`
-    //                 } 
-    //             },
-    //             { 
-    //                 data : 'primer_color',
-    //                 'render': (data, type, row, meta) => {
-    //                     return `<button class="btn btn-danger" onclick="eliminarRegistro('${row.id}')">Eliminar</button>`
-    //                 } 
-    //             },
-    //         ]
-    //     })
+                { 
+                    data : 'primer_cantidad',
+                    'render': (data, type, row, meta) => {
+                        return `<button class="btn btn-warning" onclick="asignarValores('${row.id}', '${row.nombre}', '${row.precio}')">Modificar</button>`
+                    } 
+                },
+                { 
+                    data : 'primer_color',
+                    'render': (data, type, row, meta) => {
+                        return `<button class="btn btn-danger" onclick="eliminarRegistro('${row.id}')">Eliminar</button>`
+                    } 
+                },
+            ]
+        })
 
     } catch (error) {
         console.log(error);
