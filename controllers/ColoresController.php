@@ -2,20 +2,20 @@
 
 namespace Controllers;
 
-use Model\Producto;
+use Model\Color;
 use MVC\Router;
-class ProductoController{
+class ColorController{
 
     public function index(Router $router)
     {
-        $router->render('productos/index');
+        $router->render('colores/index');
     }
 
     public function guardarAPI(){
         getHeadersApi();
-        $producto = new Producto($_POST);
+        $color = new Color($_POST);
         
-        $resultado = $producto->guardar();
+        $resultado = $color->guardar();
 
         if($resultado['resultado'] == 1){
             echo json_encode([
@@ -32,15 +32,15 @@ class ProductoController{
 
     public function buscarApi(){
         getHeadersApi();
-        $productos = Producto::where('situacion', '1');
-        echo json_encode($productos);
+        $colores = Color::where('situacion', '1');
+        echo json_encode($colores);
     }
 
     public function modificarAPI(){
         getHeadersApi();
-        $producto = new Producto($_POST);
+        $color = new Color($_POST);
         
-        $resultado = $producto->guardar();
+        $resultado = $color->guardar();
 
         if($resultado['resultado'] == 1){
             echo json_encode([
@@ -58,9 +58,9 @@ class ProductoController{
     public function eliminarAPI(){
         getHeadersApi();
         $_POST['situacion'] = 0;
-        $producto = new Producto($_POST);
+        $color = new Color($_POST);
         
-        $resultado = $producto->guardar();
+        $resultado = $color->guardar();
 
         if($resultado['resultado'] == 1){
             echo json_encode([
