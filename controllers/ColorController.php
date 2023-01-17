@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Model\Color;
 use MVC\Router;
-class ColoresController{
+class ColorController{
 
     public function index(Router $router)
     {
