@@ -9,6 +9,40 @@ const btnGuardar = document.getElementById('btnGuardar');
 const btnModificar = document.getElementById('btnModificar');
 const divTabla = document.getElementById('divTabla');
 let tablaProductos = new Datatable('#productosTabla');
+const select_topico = document.getElementById('topico');
+
+const tipo_topicos = async (evento) => {
+   
+
+
+    try {
+        //Crear el cuerpo de la consulta
+        const url = '/demo/API/colores/tipo_topicos'
+     
+        const headers = new Headers();
+        headers.append("X-requested-With", "fetch");
+
+        const config = {
+            method : 'GET',
+           
+        }
+
+        const respuesta = await fetch(url, config);
+        const data = await respuesta.json();
+        console.log(data);
+     
+        // const resultado = data.resultado;
+
+        data.forEach(topico => {
+            const option_tipo_topicos = document.createElement('option')
+            option_tipo_topicos.value = topico.id
+            option_tipo_topicos.innerText = `${topico.desc} `
+            select_topico.appendChild(option_tipo_topicos)
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 btnModificar.parentElement.style.display = 'none';
 btnGuardar.disabled = false;
@@ -29,7 +63,7 @@ const guardarProducto = async (evento) => {
 
     try {
         //Crear el cuerpo de la consulta
-        const url = '/ejemplo/API/productos/guardar'
+        const url = '/demo/API/colores/guardar'
         const body = new FormData(formProductos);
         body.delete('id');
         const headers = new Headers();
@@ -71,7 +105,7 @@ const buscarProducto = async (evento) => {
     evento && evento.preventDefault();
 
     try {
-        const url = '/ejemplo/API/productos/buscar'
+        const url = '/demo/API/colores/buscar'
         const headers = new Headers();
         headers.append("X-requested-With", "fetch");
 
@@ -139,7 +173,7 @@ const modificarProducto = async (evento) => {
 
     try {
         //Crear el cuerpo de la consulta
-        const url = '/ejemplo/API/productos/modificar'
+        const url = '/demo/API/colores/modificar'
         const body = new FormData(formProductos);
         const headers = new Headers();
         headers.append("X-requested-With", "fetch");
@@ -206,7 +240,7 @@ window.eliminarRegistro = (id) => {
         confirmButtonText: 'Si, eliminar'
     }).then( async (result) => {
         if(result.isConfirmed){
-            const url = '/ejemplo/API/productos/eliminar'
+            const url = '/demo/API/colores/eliminar'
             const body = new FormData();
             body.append('id', id);
             const headers = new Headers();
@@ -240,7 +274,7 @@ window.eliminarRegistro = (id) => {
         }
     })
 }
-
+tipo_topicos();
 formProductos.addEventListener('submit', guardarProducto )
 btnModificar.addEventListener('click', modificarProducto);
 

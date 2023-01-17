@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Color;
+use Model\TipoTopicos;
 use MVC\Router;
 class ColorController{
 
@@ -73,6 +74,14 @@ class ColorController{
             ]);
 
         }
+    }
+
+    public function buscarTopicos(){
+        getHeadersApi();
+        
+        $colores = TipoTopicos::consultarSQL('Select * from amc_tipo_topics where situacion = 1');
+        echo json_encode($colores);
+
     }
 } 
 

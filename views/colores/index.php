@@ -1,6 +1,6 @@
 <div class="row text-center">
     <div class="col">
-        <h1>Productos</h1>
+        <h1>Colores</h1>
     </div>
 </div>
 <div class="row justify-content-center">
@@ -8,8 +8,11 @@
         <input type="hidden" name="id" id="id">
         <div class="row mb-3">
             <div class="col-lg-12">
-                <label for="nombre">Nombre del producto</label>
-                <input type="text" name="nombre" id="nombre" class="form-control">
+                <label for="nombre">Tipo de topico</label>
+                <select class="form-control" name="topico" onchange="topico(this.value)" id="topico" required>
+                            <option value="">Seleccione...</option>
+                            
+                        </select>
             </div>
         </div>
         <div class="row mb-3">
@@ -46,4 +49,4 @@
         </table>
     </div>
 </div>
-<script src="build/js/productos/index.js"></script>
+<script src="build/js/colores/index.js"></script>

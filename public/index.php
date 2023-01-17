@@ -18,5 +18,6 @@ $router->post('/API/colores/guardar', [ColorController::class, 'guardarAPI'] );
 $router->get('/API/colores/buscar', [ColorController::class, 'buscarAPI'] );
 $router->post('/API/colores/modificar', [ColorController::class, 'modificarAPI'] );
 $router->post('/API/colores/eliminar', [ColorController::class, 'eliminarAPI'] );
+$router->get('/API/colores/tipo_topicos', [ColorController::class, 'buscarTopicos'] );
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
