@@ -65,8 +65,8 @@ class ActiveRecord {
     }
 
     // Busqueda Where con Columna 
-    public static function where($columna, $valor) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
+    public static function where($columna, $valor, $condicion = '=') {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} ${condicion} '${valor}'";
         $resultado = self::consultarSQL($query);
         return  $resultado ;
     }
@@ -164,7 +164,7 @@ class ActiveRecord {
         foreach($registro as $key => $value ) {
             $key = strtolower($key);
             if(property_exists( $objeto, $key  )) {
-                $objeto->$key = $value;
+                $objeto->$key = utf8_encode($value);
             }
         }
 
