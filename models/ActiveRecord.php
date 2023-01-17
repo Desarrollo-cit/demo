@@ -164,7 +164,7 @@ class ActiveRecord {
         foreach($registro as $key => $value ) {
             $key = strtolower($key);
             if(property_exists( $objeto, $key  )) {
-                $objeto->$key = $value;
+                $objeto->$key = utf8_encode($value);
             }
         }
 
