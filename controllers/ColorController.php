@@ -90,7 +90,7 @@ class ColorController{
     public function buscarTopicosAPI1(){
         getHeadersApi();
 
-        $topicos = TipoTopicos::where('situacion', '> 0');
+        $topicos = TipoTopicos::consultarSQL('Select * from amc_tipo_topics where situacion > 0');
         echo json_encode($topicos);
 
     }
