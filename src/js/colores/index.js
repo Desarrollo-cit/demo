@@ -8,16 +8,16 @@ const formProductos = document.getElementById('formProductos');
 const btnGuardar = document.getElementById('btnGuardar');
 const btnModificar = document.getElementById('btnModificar');
 const divTabla = document.getElementById('divTabla');
-let tablaProductos = new Datatable('#productosTabla');
+let topicosTabla = new Datatable('#topicosTabla');
 const select_topico = document.getElementById('topico');
-
-const tipo_topicos = async (evento) => {
+divTabla.style.display = 'none';
+const tipo_topicos = async () => {
    
 
 
     try {
         //Crear el cuerpo de la consulta
-        const url = '/demo/API/colores/tipo_topicos'
+        const url = '/demo/API/colores/tipoTopicos'
      
         const headers = new Headers();
         headers.append("X-requested-With", "fetch");
@@ -29,7 +29,7 @@ const tipo_topicos = async (evento) => {
 
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-        console.log(data);
+        // console.log(data);
      
         // const resultado = data.resultado;
 
@@ -104,58 +104,7 @@ const guardarProducto = async (evento) => {
 const buscarProducto = async (evento) => {
     evento && evento.preventDefault();
 
-    try {
-        const url = '/demo/API/colores/buscar'
-        const headers = new Headers();
-        headers.append("X-requested-With", "fetch");
-
-        const config = {
-            method : 'GET',
-        }
-
-        const respuesta = await fetch(url, config);
-        const data = await respuesta.json();
-
-        // console.log(data);
-
-        
-        tablaProductos.destroy();
-        let contador = 1;
-        tablaProductos = new Datatable('#productosTabla', {
-            language : lenguaje,
-            data : data,
-            columns : [
-                { 
-                    data : 'id',
-                    render : () => {      
-                        return contador++;
-                    }
-                },
-                { data : 'nombre'},
-                { 
-                    data : 'precio',
-                    render : (data, type, row, meta) => {
-                        return `Q. ${data}`
-                    } 
-                },
-                { 
-                    data : 'id',
-                    'render': (data, type, row, meta) => {
-                        return `<button class="btn btn-warning" onclick="asignarValores('${row.id}', '${row.nombre}', '${row.precio}')">Modificar</button>`
-                    } 
-                },
-                { 
-                    data : 'id',
-                    'render': (data, type, row, meta) => {
-                        return `<button class="btn btn-danger" onclick="eliminarRegistro('${row.id}')">Eliminar</button>`
-                    } 
-                },
-            ]
-        })
-
-    } catch (error) {
-        console.log(error);
-    }
+    
 }
 
 const modificarProducto = async (evento) => {
@@ -274,6 +223,61 @@ window.eliminarRegistro = (id) => {
         }
     })
 }
+window.topico_cambio = async (dato) => {
+alert(dato);
+
+    try {
+        const url = '/demo/API/colores/topicoSeleccionado'
+        const body = new FormData();
+            body.append('dato', dato);
+        const headers = new Headers();
+        headers.append("X-requested-With", "fetch");
+
+        const config = {
+            method : 'GET',
+        }
+
+        const respuesta = await fetch(url, config);
+        const data = await respuesta.json();
+
+        // console.log(data);
+
+        
+        topicosTabla.destroy();
+        let contador = 1;
+        topicosTabla = new Datatable('#topicosTabla', {
+            language : lenguaje,
+            data : data,
+            columns : [
+                { 
+                    data : 'id',
+                    render : () => {      
+                        return contador++;
+                    }
+                },
+                { data : 'primer_desc'},
+              
+                { 
+                    data : 'primer_cantidad',
+                    'render': (data, type, row, meta) => {
+                        return `<button class="btn btn-warning" onclick="asignarValores('${row.id}', '${row.nombre}', '${row.precio}')">Modificar</button>`
+                    } 
+                },
+                { 
+                    data : 'primer_color',
+                    'render': (data, type, row, meta) => {
+                        return `<button class="btn btn-danger" onclick="eliminarRegistro('${row.id}')">Eliminar</button>`
+                    } 
+                },
+            ]
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+} 
+
 tipo_topicos();
 formProductos.addEventListener('submit', guardarProducto )
 btnModificar.addEventListener('click', modificarProducto);

@@ -4,12 +4,16 @@ namespace Controllers;
 
 use Model\Color;
 use Model\TipoTopicos;
+use Model\Producto;
 use MVC\Router;
 class ColorController{
 
     public function index(Router $router)
     {
-        $router->render('colores/index');
+        $topicos = TipoTopicos::where('situacion', '1');
+        $router->render('colores/index', [
+            'topicos' => $topicos
+        ]);
     }
 
     public function guardarAPI(){
@@ -33,7 +37,7 @@ class ColorController{
 
     public function buscarApi(){
         getHeadersApi();
-        $colores = Color::where('situacion', '1');
+        $colores = Producto::where('situacion', '1');
         echo json_encode($colores);
     }
 
@@ -76,11 +80,18 @@ class ColorController{
         }
     }
 
-    public function buscarTopicos(){
+    public function buscarTopicosAPI(){
         getHeadersApi();
-        
-        $colores = TipoTopicos::consultarSQL('Select * from amc_tipo_topics where situacion = 1');
-        echo json_encode($colores);
+
+        $topicos = TipoTopicos::where('situacion', '1');
+        echo json_encode($topicos);
+
+    }
+    public function buscarTopicosAPI1(){
+        getHeadersApi();
+
+        $topicos = TipoTopicos::where('situacion', '> 0');
+        echo json_encode($topicos);
 
     }
 } 

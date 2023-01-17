@@ -8,13 +8,13 @@ class TipoTopicos extends ActiveRecord{
     protected static $columnasDB = ['ID','DESC','SITUACION'];
 
     public $id;
-    public $color;
+    public $desc;
     public $situacion;
 
 
     public function __construct($args = []){
         $this->id = $args['id'] ?? null;
-        $this->color = $args['desc'] ?? '';
+        $this->desc = $args['desc'] ?? '';
         $this->situacion = $args['situacion'] ?? '1';
        
     }

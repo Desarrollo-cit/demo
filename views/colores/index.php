@@ -9,7 +9,7 @@
         <div class="row mb-3">
             <div class="col-lg-12">
                 <label for="nombre">Tipo de topico</label>
-                <select class="form-control" name="topico" onchange="topico(this.value)" id="topico" required>
+                <select class="form-control" name="topico" onchange="topico_cambio(this.value)" id="topico" required>
                             <option value="">Seleccione...</option>
                             
                         </select>
@@ -33,14 +33,16 @@
 </div>
 <div class="row justify-content-center" id="divTabla">
     <div class="col-lg-10">
-        <table id="productosTabla" class="table table-bordered table-hover w-100">
+        <table id="topicosTabla" class="table table-bordered table-hover w-100">
             <thead>
                 <tr>
                     <th>NO.</th>
-                    <th>NOMBRE</th>
-                    <th>PRECIO</th>
+                    <th>CLASIFIACION</th>
+                    <th>DESCRIPCION</th>
+                    <th>CANTIDAD</th>
+                    <th>COLOR</th>
                     <th>MODIFICAR</th>
-                    <th>ELIMINAR</th>
+                   
                 </tr>
             </thead>
             <tbody>
